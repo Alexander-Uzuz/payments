@@ -23,7 +23,7 @@
                                 </td>
 
                                 <td>
-                                   {{ $order->amount }}
+                                   {{ $order->amount . ' ' . $order->currency_id}}
                                 </td>
 
                                 <td>
