@@ -22,4 +22,6 @@ class Currency extends Model
     protected $fillable = [
         'id', 'name',
     ];
+
+    public const RUB = 'RUB';
 }

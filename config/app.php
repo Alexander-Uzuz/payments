@@ -169,6 +169,8 @@ return [
          * My Service Providers...
          */
         App\Services\Currencies\CurrencyServiceProvider::class,
+        App\Services\Orders\OrderServiceProvider::class,
+
     ])->toArray(),
 
     /*
