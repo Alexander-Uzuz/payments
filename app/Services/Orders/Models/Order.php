@@ -6,6 +6,7 @@ use Illuminate\Support\Carbon;
 use App\Support\Values\AmountValue;
 use Illuminate\Database\Eloquent\Model;
 use App\Services\Currencies\Models\Currency;
+use App\Services\Payments\Contracts\Payable;
 use App\Services\Orders\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Currency $currency_id
  * @property AmountValue $amount
  */
-class Order extends Model
+class Order extends Model implements Payable
 {
     use HasFactory;
 
@@ -31,4 +32,29 @@ class Order extends Model
         'status' => OrderStatusEnum::class,
         'amount' => AmountValue::class,
     ];
+
+    public function getPayableName(): string
+    {
+        return "Заказ {$this->uuid}";
+    }
+
+    public function getPayableCurrencyId(): string
+    {
+        return $this->currency_id;
+    }
+
+    public function getPayableAmount(): AmountValue
+    {
+        return $this->amount;
+    }
+
+    public function getPayableType(): string
+    {
+        return $this->getMorphClass();
+    }
+
+    public function getPayableId(): int
+    {
+        return $this->id;
+    }
 }

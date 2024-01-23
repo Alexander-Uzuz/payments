@@ -3,12 +3,12 @@
 @section('main.content')
     <section>
         <div class="container">
-            <h4 class="mb-3">Мои заказы</h4>
+            <h4 class="mb-3">Оплата</h4>
 
             <div class="card">
                 <div class="card-body">
                     <h5 class="m-0 card-title">
-                        Детали заказа
+                        Детали платежа
                     </h5>
                 </div>
 
@@ -17,12 +17,12 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-muted">
-                                    ID заказа
+                                    ID платежа
                                 </div>
                             </div>
 
                             <div class="col-8">
-                                {{ $order->uuid }}
+                                {{ $payment->uuid }}
                             </div>
                         </div>
                     </li>
@@ -31,12 +31,12 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-muted">
-                                    Сумма заказа
+                                    Сумма платежа
                                 </div>
                             </div>
 
                             <div class="col-8">
-                                {{ $order->amount }}
+                                {{ $payment->amount }} {{ $payment->currency_id }}
                             </div>
                         </div>
                     </li>
@@ -45,28 +45,42 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="text-muted">
-                                    Статус заказа
+                                    Статус платежа
                                 </div>
                             </div>
 
                             <div class="col-8">
-                                <div class="text-{{ $order->status->color() }}">
-                                    {{ $order->status->name() }}
+                                <div class="text-{{ $payment->status->color() }}">
+                                    {{ $payment->status->name() }}
                                 </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="text-muted">
+                                    Операция
+                                </div>
+                            </div>
+
+                            <div class="col-8">
+                                {{ $payment->payable->getPayableName() }}
                             </div>
                         </div>
                     </li>
                 </ul>
 
-                    <div class="card-body">
-                        <form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
+                <div class="card-body">
+                    {{-- <form action="{{ route('payments.payment', $payment->uuid) }}" method="POST">
                             @csrf
 
                             <button type="submit" class="btn btn-primary">
                                 Перейти к оплате
                             </button>
-                        </form>
-                    </div>
+                        </form> --}}
+                </div>
             </div>
         </div>
     </section>

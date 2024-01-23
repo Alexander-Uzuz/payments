@@ -2,21 +2,20 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\Models\PaymentMethod;
+use App\Services\Payments\Actions\CreatePaymentAction;
+use App\Services\Payments\Drivers\PaymentDriverFactory;
 use App\Services\Payments\Drivers\PaymentDriver;
 use App\Services\Payments\Enums\PaymentDriverEnum;
-use App\Services\Payments\Drivers\TestPaymentDriver;
 
 class PaymentService
 {
-    public function getDriver(PaymentMethod $method): PaymentDriver
+    public function getDriver(PaymentDriverEnum $driver): PaymentDriver
     {
-        return match($method->driver){
-            PaymentDriverEnum::test => new TestPaymentDriver,
+        return (new PaymentDriverFactory)->make($driver);
+    }
 
-            default => throw new \InvalidArgumentException(
-                "Драйвер [{$method->driver}] не поддерживается"
-            )
-        };
+    public function createPayment(): CreatePaymentAction
+    {
+        return new CreatePaymentAction;
     }
 }
