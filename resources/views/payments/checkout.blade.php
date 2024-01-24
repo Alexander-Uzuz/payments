@@ -73,13 +73,36 @@
                 </ul>
 
                 <div class="card-body">
-                    {{-- <form action="{{ route('payments.payment', $payment->uuid) }}" method="POST">
-                            @csrf
 
-                            <button type="submit" class="btn btn-primary">
-                                Перейти к оплате
-                            </button>
-                        </form> --}}
+                    @if ($methods->isEmpty())
+                        Извините, оплата временно недоступна (=
+                    @else
+                        @if ($errors->any())
+                            <div class="mb-3 text-danger">
+                                {{ $errors->first() }}
+                            </div>
+                        @endif
+                        <form action="{{ route('payments.method', $payment->uuid) }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="mb-3 mb-md-0">
+                                        <select name="method_id" class="form-control">
+                                            <option value="">Способ оплаты</option>
+                                            @foreach ($methods as $method)
+                                                <option value="{{ $method->id }}">{{ $method->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <button type="submit" class="btn btn-primary w-100">Продолжить</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

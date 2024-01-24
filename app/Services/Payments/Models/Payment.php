@@ -5,10 +5,12 @@ namespace App\Services\Payments\Models;
 use Illuminate\Support\Carbon;
 use App\Support\Values\AmountValue;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Payments\Models\PaymentMethod;
 use App\Services\Payments\Enums\PaymentDriverEnum;
 use App\Services\Payments\Enums\PaymentStatusEnum;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -20,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $payable_type
  * @property int $payable_id
  * @property int $method_id
+ * @property PaymentMethod $method
  * @property PaymentDriverEnum $driver
  */
 class Payment extends Model
@@ -50,5 +53,10 @@ class Payment extends Model
     public function payable():MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function method():BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 }
