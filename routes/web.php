@@ -14,3 +14,8 @@ Route::post('orders/{order:uuid}/payment', [OrderController::class, 'payment'])-
 Route::get('payments/{payment:uuid}/checkout', [PaymentController::class, 'checkout'])->name('payments.checkout');
 Route::post('payments/{payment:uuid}/method', [PaymentController::class, 'method'])->name('payments.method');
 Route::get('payments/{payment:uuid}/process', [PaymentController::class, 'process'])->name('payments.process');
+Route::post('payments/{payment:uuid}/complete', [PaymentController::class, 'complete'])->name('payments.complete');
+Route::post('payments/{payment:uuid}/cancel', [PaymentController::class, 'cancel'])->name('payments.cancel');
+Route::get('payments/success', [PaymentController::class, 'success'])->name('payments.success');
+Route::get('payments/failure', [PaymentController::class, 'failure'])->name('payments.failure');
+

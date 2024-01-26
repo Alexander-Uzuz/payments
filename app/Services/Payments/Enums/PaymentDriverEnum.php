@@ -12,4 +12,9 @@ enum PaymentDriverEnum: string
             self::test => 'Тестовый провайдер',
         };
     }
+
+    public function isTest():bool
+    {
+        return $this === self::test;
+    }
 }
