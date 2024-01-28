@@ -17,6 +17,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('subscriptions') }}" class="nav-link active">
+                        Мои подписки
+                    </a>
+                </li>
+
             </ul>
 
         </div>

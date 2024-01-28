@@ -26,7 +26,7 @@ enum OrderStatusEnum: string
         };
     }
 
-    public function is(OrderStatusEnum $status):bool
+    public function is(OrderStatusEnum $status): bool
     {
         return $this === $status;
     }
