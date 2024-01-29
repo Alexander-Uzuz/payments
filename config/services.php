@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'tinkoff' => [
+        'terminal' => env('TINKOFF_TERMINAL'),
+        'password' => env('TINKOFF_PASSWORD'),
+    ],
+
 ];
