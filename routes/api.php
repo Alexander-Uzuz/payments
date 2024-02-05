@@ -14,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('payments/callbacks/tinkoff', 'App\Http\Controllers\Api\Payments\Callbacks\TinkoffController')->name('api.payments.callbacks.tinkoff');

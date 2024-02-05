@@ -2,8 +2,10 @@
 
 namespace App\Services\Currencies\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Support\Values\AmountValue;
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Currencies\Sources\SourceEnum;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 /**
@@ -21,7 +23,14 @@ class Currency extends Model
 
     protected $fillable = [
         'id', 'name',
+        'price', 'source',
+    ];
+
+    protected $casts = [
+        'price' => AmountValue::class,
+        'source' => SourceEnum::class,
     ];
 
     public const RUB = 'RUB';
+    public const USD = 'USD';
 }

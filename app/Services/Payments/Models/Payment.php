@@ -43,7 +43,7 @@ class Payment extends Model
 
         'method_id',
 
-        'driver',
+        'driver', 'driver_payment_id',
     ];
 
     protected $casts = [
@@ -52,12 +52,12 @@ class Payment extends Model
         'driver' => PaymentDriverEnum::class,
     ];
 
-    public function payable():MorphTo
+    public function payable(): MorphTo
     {
         return $this->morphTo();
     }
 
-    public function method():BelongsTo
+    public function method(): BelongsTo
     {
         return $this->belongsTo(PaymentMethod::class);
     }

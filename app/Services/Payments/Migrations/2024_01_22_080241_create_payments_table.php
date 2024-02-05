@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreign('method_id')->references('id')->on('payment_methods');
 
             $table->string('driver')->nullable();
+            $table->string('driver_payment_id')->nullable()->comment('ID платежа у провайдера');
         });
     }
 
