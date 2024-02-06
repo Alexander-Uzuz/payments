@@ -36,7 +36,8 @@
                             </div>
 
                             <div class="col-8">
-                                {{ $order->amount }}
+                                {{-- {{ $order->amount }} --}}
+                                {{ money(convert($order->amount), currency()) }}
                             </div>
                         </div>
                     </li>
@@ -59,15 +60,15 @@
                 </ul>
 
                 @if ($order->status->isPending())
-                <div class="card-body">
-                    <form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
-                        @csrf
+                    <div class="card-body">
+                        <form action="{{ route('orders.payment', $order->uuid) }}" method="POST">
+                            @csrf
 
-                        <button type="submit" class="btn btn-primary">
-                            Перейти к оплате
-                        </button>
-                    </form>
-                </div>
+                            <button type="submit" class="btn btn-primary">
+                                Перейти к оплате
+                            </button>
+                        </form>
+                    </div>
                 @endif
             </div>
         </div>

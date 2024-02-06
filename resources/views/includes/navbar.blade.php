@@ -25,6 +25,9 @@
 
             </ul>
 
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                @include('includes.currencies')
+            </ul>
         </div>
     </div>
 </nav>

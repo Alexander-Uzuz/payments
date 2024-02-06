@@ -33,7 +33,8 @@
                                 </td>
 
                                 <td>
-                                    {{ $subscription->price }} {{ $subscription->currency_id }}
+                                    {{-- {{ $subscription->price }} {{ $subscription->currency_id }} --}}
+                                    {{ money($subscription->price, $subscription->currency_id) }}
                                 </td>
 
                                 <td>

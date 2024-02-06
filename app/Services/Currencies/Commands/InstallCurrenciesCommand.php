@@ -42,5 +42,14 @@ class InstallCurrenciesCommand extends Command
                 'price' => new AmountValue(100),
                 'source' => SourceEnum::cbrf,
             ]);
+
+        Currency::query()
+            ->firstOrCreate([
+                'id' => Currency::EUR,
+            ], [
+                'name' => 'Евро',
+                'price' => new AmountValue(100),
+                'source' => SourceEnum::cbrf,
+            ]);
     }
 }
