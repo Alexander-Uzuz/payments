@@ -21,7 +21,7 @@ class TinkoffDriver extends PaymentDriver
 
         $entity = $this->tinkoffService->createPayment(
             new CreatePaymentData(
-                amount: $payment->amount->value() * 100,
+                amount: $payment->driver_amount->value() * 100,
                 order: $payment->uuid,
                 successUrl: route('payments.success', ['uuid' => $payment->uuid]),
                 failureUrl: route('payments.failure', ['uuid' => $payment->uuid]),

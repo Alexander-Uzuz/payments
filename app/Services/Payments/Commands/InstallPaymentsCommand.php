@@ -39,6 +39,16 @@ class InstallPaymentsCommand extends Command
         PaymentMethod::query()
             ->firstOrCreate([
                 'driver' => PaymentDriverEnum::test,
+                'driver_currency_id' => 'RUB',
+            ], [
+                'name' => 'Тестовый способ',
+                'active' => !app()->isProduction(),
+            ]);
+
+        PaymentMethod::query()
+            ->firstOrCreate([
+                'driver' => PaymentDriverEnum::test,
+                'driver_currency_id' => 'USD',
             ], [
                 'name' => 'Тестовый способ',
                 'active' => !app()->isProduction(),
@@ -47,6 +57,7 @@ class InstallPaymentsCommand extends Command
         PaymentMethod::query()
             ->firstOrCreate([
                 'driver' => PaymentDriverEnum::tinkoff,
+                'driver_currency_id' => 'RUB',
             ], [
                 'name' => 'Тинькофф',
                 'active' => false,

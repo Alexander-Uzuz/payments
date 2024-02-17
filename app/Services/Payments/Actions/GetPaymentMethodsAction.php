@@ -8,12 +8,20 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GetPaymentMethodsAction
 {
+    private string|null $currency = null;
     private ?bool $active = null;
     private ?int $id = null;
 
     public function active(bool $active = true): static
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function currency(string $currency): static
+    {
+        $this->currency = $currency;
 
         return $this;
     }
@@ -42,6 +50,10 @@ class GetPaymentMethodsAction
 
         if (!is_null($this->active)) {
             $query->where('active', $this->active);
+        }
+
+        if (!is_null($this->currency)) {
+            $query->where('driver_currency_id', $this->currency);
         }
 
         if (!is_null($this->id)) {

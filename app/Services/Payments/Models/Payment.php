@@ -19,13 +19,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property PaymentStatusEnum $status
+ * @property string $currency_id
  * @property AmountValue $amount
  * @property string $payable_type
  * @property int $payable_id
  * @property Payable $payable
  * @property int $method_id
  * @property PaymentMethod $method
- * @property PaymentDriverEnum $driver
+ * @property PaymentDriverEnum|null $driver
+ * @property string|null $driver_currency_id
+ * @property AmountValue|null $driver_amount
+ * @property string|null $driver_payment_id
  */
 class Payment extends Model
 {
@@ -43,13 +47,16 @@ class Payment extends Model
 
         'method_id',
 
-        'driver', 'driver_payment_id',
+        'driver',
+        'driver_currency_id', 'driver_amount',
+        'driver_payment_id',
     ];
 
     protected $casts = [
         'status' => PaymentStatusEnum::class,
         'amount' => AmountValue::class,
         'driver' => PaymentDriverEnum::class,
+        'driver_amount' => AmountValue::class,
     ];
 
     public function payable(): MorphTo

@@ -22,7 +22,7 @@ class PaymentMethod extends Model
 
     protected $fillable = [
         'name', 'active',
-        'driver',
+        'driver', 'driver_currency_id',
     ];
 
     protected $casts = [
