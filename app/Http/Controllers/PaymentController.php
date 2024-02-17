@@ -14,6 +14,7 @@ class PaymentController extends Controller
     {
         abort_unless($payment->status->isPending(), 404);
 
+
         $methods = $paymentService
             ->getPaymentMethods()
             ->active()

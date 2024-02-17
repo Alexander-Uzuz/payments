@@ -36,4 +36,9 @@ return [
         'password' => env('TINKOFF_PASSWORD'),
     ],
 
+    'stripe' => [
+        'public_key' => env('STRIPE_PUBLIC_KEY'),
+        'secret_key' => env('STRIPE_SECRET_KEY'),
+    ],
+
 ];

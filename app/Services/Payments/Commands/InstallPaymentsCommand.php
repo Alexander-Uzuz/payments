@@ -2,6 +2,7 @@
 
 namespace App\Services\Payments\Commands;
 
+use App\Services\Currencies\Models\Currency;
 use App\Services\Payments\Enums\PaymentDriverEnum;
 use App\Services\Payments\Models\PaymentMethod;
 use Illuminate\Console\Command;
@@ -60,6 +61,15 @@ class InstallPaymentsCommand extends Command
                 'driver_currency_id' => 'RUB',
             ], [
                 'name' => 'Тинькофф',
+                'active' => false,
+            ]);
+
+        PaymentMethod::query()
+            ->firstOrCreate([
+                'driver' => PaymentDriverEnum::stripe_elements,
+                'driver_currency_id' => Currency::USD,
+            ], [
+                'name' => 'Stripe Elements',
                 'active' => false,
             ]);
     }
